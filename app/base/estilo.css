@@ -1,0 +1,89 @@
+/* estilos generales */
+* {
+    font-family: sans-serif;
+
+}
+body {
+    margin: 0;
+    padding: 0;
+    background: #222;
+    color: #eee;
+    font-size: 17px;
+}
+
+.contenido {
+    padding: 30px;
+    margin: auto;
+    width: 80%;
+}
+.grp {
+    display: block;
+    padding: 5px;
+}
+.logo .ext {
+    display: none;
+}
+.logo:hover .sig {
+    display: none;
+}
+.logo:hover .ext {
+    display: inline-block;
+}
+
+select {
+    padding: 3px 6px;
+    border: none;
+    background: #bbb;
+    color: #222;
+    font-size: 1em;
+    border-radius: 4px;
+
+}
+.btn, button {
+    text-decoration: none;
+    border-radius: 4px;
+    padding: 3px 6px;
+    border: none;
+    background: #bbb;
+    color: #222;
+    font-size: 1em;
+    cursor: pointer;
+}
+.btn:hover, button:hover {
+    background: #eee;
+}
+input {
+    text-decoration: none;
+    border-radius: 4px;
+    padding: 3px 6px;
+    border: none;
+    background: #eee;
+    color: #222;
+    text-align: center;
+    font-size: 1em;
+    cursor: pointer;
+}
+select:focus, input:focus, .btn:focus, button:focus {
+    box-shadow: 0 0 10px #0ff;
+}
+label {
+    font-size: 0.9em;
+    color: #aaa;
+    margin: 10px;
+}
+
+
+/* específicos para ventana: pantalla */
+body#pantalla {
+    background:#000;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+body#pantalla.activa {
+    cursor:none;
+}
+.activar_pantalla {
+    text-align: center;
+    padding: 40px;
+}

@@ -1,0 +1,60 @@
+<html lang="es-ES">
+    <head>
+        <meta charset="utf-8">
+
+        <meta content="ie=edge" http-equiv="x-ua-compatible">
+        <meta content="width=device-width, initial-scale=1.0" name="viewport">
+        <meta content="true" name="HandheldFriendly">
+        <meta content="width" name="MobileOptimized">
+        <meta content="on" http-equiv="cleartype">
+
+        <title>RVD - Controles</title>
+
+        <script src="./base/interfaz.js"></script>
+        <script src="./configuracion.js"></script>
+
+        <link rel="stylesheet" href="base/estilo.css">
+    </head>
+    <body>
+        <div class="contenido">
+            <h1 class="logo">
+                <span class="sig">RVD</span>
+                <span class="ext">Reproductor de Video Disociado</span>
+            </h1>
+
+            <div class="grp">
+                <h3>Pantalla</h3>
+                <div class="grp">
+                    <button class="btn" onclick="window.open('./pantalla.html', 'rvd_pantalla', 'width=300, height=250')">Abrir</button>
+                </div>
+            </div>
+
+            <div class="grp">
+                <h3>Controles de reproducción</h3>
+                <div class="grp">
+                    <label for="archivos">Video actual: </label>
+                    <select id="archivos"></select>
+                </div>
+                <div class="grp">
+                    <button id="cargar">Cargar</button>
+                    <button id="reproducir">Reproducir</button>
+                    <button id="pausar">Pausar</button>
+                    <button id="detener">Detener</button>
+                </div>
+                <h4>Ajustes</h4>
+                <div class="grp">
+                    <input id="opacidad" type="number" min="0" max="1" step="0.01" value="1">
+                    <label for="opacidad">OPACIDAD</label>
+                    <input id="volumen" type="number" min="0" max="1" step="0.01" value="1">
+                    <label for="volumen">VOLUMEN</label>
+                </div>
+                <div class="grp">
+                    <input id="vol_opa" type="number" min="0" max="1" step="0.01" value="1">
+                    <label for="vol_opa">VOLUMEN Y OPACIDAD</label>
+                </div>
+            </div>
+        </div>
+        <script>iniciar_controles();</script>
+
+    </body>
+</html>

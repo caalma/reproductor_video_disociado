@@ -1,0 +1,28 @@
+<html lang="es-ES">
+    <head>
+        <meta charset="utf-8">
+
+        <meta content="ie=edge" http-equiv="x-ua-compatible">
+        <meta content="width=device-width, initial-scale=1.0" name="viewport">
+        <meta content="true" name="HandheldFriendly">
+        <meta content="width" name="MobileOptimized">
+        <meta content="on" http-equiv="cleartype">
+
+        <title>RVD - Pantalla</title>
+
+        <script src="./base/interfaz.js"></script>
+        <link rel="stylesheet" href="base/estilo.css">
+    </head>
+    <body id="pantalla">
+
+        <div class="activar_pantalla">
+            <button class="btn" onclick="this.parentElement.style = 'display:none';document.body.classList.add('activa');">Activar PANTALLA</button>
+        </div>
+        <video id="video" width="100%" height="100%">
+            <source id="video_source" src="">
+        </video>
+
+        <script>iniciar_pantalla();</script>
+
+    </body>
+</html>
