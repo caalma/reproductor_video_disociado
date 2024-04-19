@@ -147,3 +147,10 @@ function iniciar_pantalla(){
     });
 
 }
+
+function activar_pantalla(el){
+    el.parentElement.style = 'display:none';
+    document.body.classList.add('activa');
+    let h = document.querySelector('html');
+    h.classList.remove('no_activa');
+}

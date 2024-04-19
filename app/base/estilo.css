@@ -71,9 +71,23 @@ label {
     color: #aaa;
     margin: 10px;
 }
+.progreso * {
+    vertical-align: middle;
+}
 
 
 /* específicos para ventana: pantalla */
+html {
+    width: 100vw;
+    height: 100vh;
+}
+
+html.no_activa {
+    width: calc(100vw - 4px);
+    height: calc(100vh - 4px);
+    border: 2px solid #fff;
+}
+
 body#pantalla {
     background:#000;
     margin: 0;
@@ -83,11 +97,14 @@ body#pantalla {
 body#pantalla.activa {
     cursor:none;
 }
+
 .activar_pantalla {
     text-align: center;
-    padding: 40px;
+    padding: 80px;
 }
 
-.progreso * {
-    vertical-align: middle;
+.activar_pantalla button {
+    background: #fff;
+    pading: 20px;
+    font-weight: bold;
 }
