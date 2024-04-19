@@ -42,7 +42,23 @@
                     <button id="pausar">Pausar</button>
                     <button id="detener">Detener</button>
                 </div>
-                <h4>Ajustes</h4>
+                <h3>Control de tiempo</h3>
+                <div class="grp">
+                    <input type="checkbox" id="ciclico">
+                    <label for="ciclico">Reproducir ciclicamente</label>
+                </div>
+                <div class="grp">
+                    <label for="posicionarse">Posicionarse en</label>
+                    <span >
+                        <input type="number" id="posicionarse"  min="0" value="0">
+                        <br>
+                        <span class="progreso">
+                        <progress style="width:350px;height:40px;" id="posicion" min="0" max="1" value="0"></progress>
+                        <span id="posicion_info"></span>
+                        </span>
+                    </span>
+                </div>
+                <h3>Ajustes</h3>
                 <div class="grp">
                     <input id="opacidad" type="number" min="0" max="1" step="0.01" value="1">
                     <label for="opacidad">OPACIDAD</label>

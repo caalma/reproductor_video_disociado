@@ -21,6 +21,18 @@ function iniciar_controles(){
     var opacidad = document.querySelector("#opacidad");
     var volumen = document.querySelector("#volumen");
     var vol_opa = document.querySelector("#vol_opa");
+    var ciclico = document.querySelector("#ciclico");
+    var posicionarse = document.querySelector("#posicionarse");
+    var posicion = document.querySelector("#posicion");
+    var posicion_info = document.querySelector("#posicion_info");
+
+    ciclico.addEventListener('change', ev => {
+        bc.postMessage({accion: 'reproduccion_ciclica', valor: ev.target.checked});
+    });
+
+    posicionarse.addEventListener('change', ev => {
+        bc.postMessage({accion: 'posicionarse', valor: ev.target.value});
+    });
 
     archivos.addEventListener('change', ev => {
         bc.postMessage({accion: 'archivo', valor: ev.target.value});
@@ -56,14 +68,44 @@ function iniciar_controles(){
         opacidad.value = volumen.value = v;
     });
 
+    bc.addEventListener('message', ev => {
+        if(ev.data.accion == 'posicion_actual'){
+            posicion.value = ev.data.valor[0] / ev.data.valor[1];
+            let p = ev.data.valor[0].toFixed(2),
+                t = ev.data.valor[1].toFixed(2);
+            posicion_info.innerHTML = `${p} / ${t}`;
+        }
+    });
+
+
     setear_videos();
     bc.postMessage( {accion: 'archivo', valor: archivos.value} );
 }
 
-
+var reproducir_ciclicamente = false;
 function iniciar_pantalla(){
     var video = document.querySelector("#video");
     var video_source = document.querySelector("#video_source");
+
+
+    video.addEventListener('loadeddata', ev => {
+        bc.postMessage({accion: 'posicion_actual', valor:
+                        [video.currentTime, video.duration]
+                       });
+    });
+    video.addEventListener('timeupdate', ev => {
+        bc.postMessage({accion: 'posicion_actual', valor:
+                        [video.currentTime, video.duration]
+                       });
+
+        if(reproducir_ciclicamente){
+            if(video.currentTime == video.duration){
+                video.currentTime = 0;
+                video.play();
+            }
+        }
+
+    });
 
     bc.addEventListener('message', ev => {
         if(video && video_source){
@@ -87,6 +129,10 @@ function iniciar_pantalla(){
             }else if(ev.data.accion == 'detener'){
                 video.pause();
                 video.currentTime = 0;
+            }else if(ev.data.accion == 'reproduccion_ciclica'){
+                reproducir_ciclicamente = ev.data.valor;
+            }else if(ev.data.accion == 'posicionarse'){
+                video.currentTime = ev.data.valor;
             }
         }
     });

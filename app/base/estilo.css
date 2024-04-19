@@ -87,3 +87,7 @@ body#pantalla.activa {
     text-align: center;
     padding: 40px;
 }
+
+.progreso * {
+    vertical-align: middle;
+}
