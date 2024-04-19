@@ -31,6 +31,11 @@ function iniciar_controles(){
     });
 
     posicionarse.addEventListener('change', ev => {
+        if(ev.target.value > ev.target.max) {
+            ev.target.value = ev.target.max;
+        }else if(ev.target.value < 0) {
+            ev.target.value = 0;
+        }
         bc.postMessage({accion: 'posicionarse', valor: ev.target.value});
     });
 
@@ -70,9 +75,11 @@ function iniciar_controles(){
 
     bc.addEventListener('message', ev => {
         if(ev.data.accion == 'posicion_actual'){
-            posicion.value = ev.data.valor[0] / ev.data.valor[1];
             let p = ev.data.valor[0].toFixed(2),
                 t = ev.data.valor[1].toFixed(2);
+            posicion.value = ev.data.valor[0];
+            posicion.max = ev.data.valor[1];
+            posicionarse.max = ev.data.valor[1];
             posicion_info.innerHTML = `${p} / ${t}`;
         }
     });
@@ -86,7 +93,6 @@ var reproducir_ciclicamente = false;
 function iniciar_pantalla(){
     var video = document.querySelector("#video");
     var video_source = document.querySelector("#video_source");
-
 
     video.addEventListener('loadeddata', ev => {
         bc.postMessage({accion: 'posicion_actual', valor:
@@ -132,7 +138,10 @@ function iniciar_pantalla(){
             }else if(ev.data.accion == 'reproduccion_ciclica'){
                 reproducir_ciclicamente = ev.data.valor;
             }else if(ev.data.accion == 'posicionarse'){
-                video.currentTime = ev.data.valor;
+                let v = ev.data.valor;
+                if(v > video.duration) { v = video.duration; }
+                if(v < 0) { v = 0; }
+                video.currentTime = v;
             }
         }
     });
